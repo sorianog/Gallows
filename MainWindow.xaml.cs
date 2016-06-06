@@ -28,10 +28,15 @@ namespace Gallows
         private void Load(object sender, RoutedEventArgs e)
         {
             DrawHangPost();
-            //DrawBodyPart(BodyParts.HEAD);
-            //DrawBodyPart(BodyParts.LEFTEYE);
-            //DrawBodyPart(BodyParts.RIGHTEYE);
-            //DrawBodyPart(BodyParts.MOUTH);
+            DrawBodyPart(BodyParts.HEAD);
+            DrawBodyPart(BodyParts.LEFTEYE);
+            DrawBodyPart(BodyParts.RIGHTEYE);
+            DrawBodyPart(BodyParts.MOUTH);
+            DrawBodyPart(BodyParts.BODY);
+            DrawBodyPart(BodyParts.LEFTARM);
+            DrawBodyPart(BodyParts.RIGHTARM);
+            DrawBodyPart(BodyParts.LEFTLEG);
+            DrawBodyPart(BodyParts.RIGHTLEG);
         }
 
         enum BodyParts
@@ -83,14 +88,49 @@ namespace Gallows
                     canvas1.Children.Add(head);
                     break;
                 case BodyParts.BODY:
+                    Line body = new Line();
+                    body.Stroke = Brushes.Black;
+                    body.X1 = 55;
+                    body.Y1 = 100;
+                    body.X2 = 55;
+                    body.Y2 = 170;
+                    canvas1.Children.Add(body);
                     break;
                 case BodyParts.LEFTARM:
+                    Line lArm = new Line();
+                    lArm.Stroke = Brushes.Black;
+                    lArm.X1 = 55;
+                    lArm.Y1 = 110;
+                    lArm.X2 = 25;
+                    lArm.Y2 = 140;
+                    canvas1.Children.Add(lArm);
                     break;
                 case BodyParts.RIGHTARM:
+                    Line rArm = new Line();
+                    rArm.Stroke = Brushes.Black;
+                    rArm.X1 = 55;
+                    rArm.Y1 = 110;
+                    rArm.X2 = 85;
+                    rArm.Y2 = 140;
+                    canvas1.Children.Add(rArm);
                     break;
                 case BodyParts.LEFTLEG:
+                    Line lLeg = new Line();
+                    lLeg.Stroke = Brushes.Black;
+                    lLeg.X1 = 55;
+                    lLeg.Y1 = 170;
+                    lLeg.X2 = 25;
+                    lLeg.Y2 = 200;
+                    canvas1.Children.Add(lLeg);
                     break;
                 case BodyParts.RIGHTLEG:
+                    Line RLeg = new Line();
+                    RLeg.Stroke = Brushes.Black;
+                    RLeg.X1 = 55;
+                    RLeg.Y1 = 170;
+                    RLeg.X2 = 85;
+                    RLeg.Y2 = 200;
+                    canvas1.Children.Add(RLeg);
                     break;
                 case BodyParts.LEFTEYE:
                     Ellipse lEye = new Ellipse();
