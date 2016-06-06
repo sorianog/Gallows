@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gallows"
         mc:Ignorable="d"
-        Title="Gallows " Height="292.4" Width="545.8" ResizeMode="NoResize">
+        Title="Gallows " Height="292.4" Width="545.8" ResizeMode="NoResize" Loaded="Load">
     <Grid Margin="0,0,3.2,-0.2">
         <GroupBox x:Name="groupBox" Header="" HorizontalAlignment="Left" Margin="367,4,0,0" VerticalAlignment="Top" Height="243" Width="155">
-            <DockPanel HorizontalAlignment="Left" Height="226" VerticalAlignment="Top" Width="145" Margin="-1,-2,-1.6,0"/>
+            <Canvas x:Name="canvas1" HorizontalAlignment="Left" Height="225" VerticalAlignment="Top" Width="145" Margin="-1,-2,-1.6,0"/>
         </GroupBox>
         <GroupBox x:Name="groupBox_Copy" Header="" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Height="173" Width="350">
             <Grid HorizontalAlignment="Left" Height="152" VerticalAlignment="Top" Width="340" Margin="-1,-1,-1.4,0">
