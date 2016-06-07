@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -16,6 +18,7 @@ namespace Gallows
     {
         private string wordToGuess = "";
         private static WordGenerator wordGen;
+        private List<Label> chrLabels = new List<Label>();
         enum BodyParts
         {
             HEAD, LEFTEYE, RIGHTEYE, MOUTH, BODY, LEFTARM, RIGHTARM, LEFTLEG, RIGHTLEG
@@ -31,7 +34,8 @@ namespace Gallows
             DrawHangPost();
             wordGen = new WordGenerator();
             wordToGuess = wordGen.GenerateWord();
-            Console.WriteLine(wordToGuess);
+            Console.WriteLine(wordToGuess + " Length: " + wordToGuess.Length);
+            MakeLabels();
         }
 
         private void DrawHangPost()
@@ -149,7 +153,21 @@ namespace Gallows
                     mouth.Margin = new Thickness(45, 82, 0, 0);
                     canvas1.Children.Add(mouth);
                     break;                    
+            }            
+        }
+        private void MakeLabels()
+        {
+            char[] chars = wordToGuess.ToCharArray();
+            double spcBetween = (wrdGrid.Width - 10) / chars.Length;
+            for (int i = 0; i < chars.Length; i++)
+            {
+                chrLabels.Add(new Label());
+                Label label = new Label();
+                chrLabels[i].Margin = new Thickness((i * spcBetween) + 10, wrdGrid.Height / 2 - 20, 0, 0);
+                chrLabels[i].Content = "_";
+                wrdGrid.Children.Add(chrLabels[i]);
             }
+            wrdLenLbl.Content = "Word Length: " + wordToGuess.Length;
         }
     }
 }
