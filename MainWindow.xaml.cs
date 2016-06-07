@@ -14,6 +14,13 @@ namespace Gallows
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string wordToGuess = "";
+        private static WordGenerator wordGen;
+        enum BodyParts
+        {
+            HEAD, LEFTEYE, RIGHTEYE, MOUTH, BODY, LEFTARM, RIGHTARM, LEFTLEG, RIGHTLEG
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -22,16 +29,9 @@ namespace Gallows
         private void Load(object sender, RoutedEventArgs e)
         {
             DrawHangPost();
-            WordGenerator wordGen = new WordGenerator();
-            Dispatcher.BeginInvoke((Action)(() => {
-                wordGen.GenerateWord();
-                MessageBox.Show(wordGen.Word);
-            }));
-        }
-
-        enum BodyParts
-        {
-            HEAD, LEFTEYE, RIGHTEYE, MOUTH, BODY, LEFTARM, RIGHTARM, LEFTLEG, RIGHTLEG  
+            wordGen = new WordGenerator();
+            wordToGuess = wordGen.GenerateWord();
+            Console.WriteLine(wordToGuess);
         }
 
         private void DrawHangPost()

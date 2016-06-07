@@ -9,17 +9,18 @@ namespace Gallows
     class WordGenerator
     {
         private static readonly string URL = "http://randomword.setgetgo.com/get.php";
-        public string Word { get; set; }
 
         public WordGenerator()
         {
 
         }
 
-        public void GenerateWord()
+        public string GenerateWord()
         {
             WebClient client = new WebClient();
-            Word = client.DownloadString(URL);
+            // Increase web request speed by skipping proxy setup
+            client.Proxy = null;
+            return client.DownloadString(URL);
         }
     }
 }
