@@ -7,4 +7,7 @@ Direct Link: https://www.iconfinder.com/icons/339870/capitol_death_hanging_punis
 
 ![Gallows Icon](https://cdn2.iconfinder.com/data/icons/nasty/60/hanging_death_sentence_capitol_punishment-128.png "Gallows Icon") 
 
-License: Free for commercial use
+License: Free for commercial use  
+
+# Word Generation 
+Made possible by http://randomword.setgetgo.com/
