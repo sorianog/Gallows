@@ -20,7 +20,7 @@ namespace Gallows
             WebClient client = new WebClient();
             // Increase web request speed by skipping proxy setup
             client.Proxy = null;
-            return client.DownloadString(URL);
+            return client.DownloadString(URL).ToLower();
         }
     }
 }

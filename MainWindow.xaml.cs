@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -160,14 +161,35 @@ namespace Gallows
             char[] chars = wordToGuess.ToCharArray();
             double spcBetween = (wrdGrid.Width - 10) / chars.Length;
             for (int i = 0; i < chars.Length; i++)
-            {
-                chrLabels.Add(new Label());
-                Label label = new Label();
-                chrLabels[i].Margin = new Thickness((i * spcBetween) + 10, wrdGrid.Height / 2 - 20, 0, 0);
-                chrLabels[i].Content = "_";
-                wrdGrid.Children.Add(chrLabels[i]);
+            {                
+                Label chrLabel = new Label();
+                chrLabel.Margin = new Thickness((i * spcBetween) + 10, wrdGrid.Height / 2 - 20, 0, 0);
+                chrLabel.FontSize = 20;
+                chrLabel.Content = "_";
+                chrLabels.Add(chrLabel);
+                wrdGrid.Children.Add(chrLabel);
             }
             wrdLenLbl.Content = "Word Length: " + wordToGuess.Length;
+        }
+
+        private void ltrBtn_Click(object sender, RoutedEventArgs e)
+        {
+            char ltr = ltrBox.Text.ToLower().ToCharArray()[0];
+            if (!char.IsLetter(ltr))
+            {
+                MessageBox.Show("Please submit letters only!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            } else if (wordToGuess.Contains(ltr))
+            {
+                char[] ltrsInWrd = wordToGuess.ToCharArray();
+                for (int i = 0; i < ltrsInWrd.Length; i++)
+                {
+                    if (ltrsInWrd[i] == ltr)
+                    {
+                        chrLabels[i].Content = ltr;
+                    }
+                }
+            }
+            //ltrBox.Text = "";
         }
     }
 }
