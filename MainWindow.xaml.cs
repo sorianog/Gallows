@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+/// <summary>
+/// Gallows by Gerald Soriano
+/// Date: 06/05/2016
+/// </summary>
 namespace Gallows
 {
     /// <summary>
@@ -28,15 +22,11 @@ namespace Gallows
         private void Load(object sender, RoutedEventArgs e)
         {
             DrawHangPost();
-            DrawBodyPart(BodyParts.HEAD);
-            DrawBodyPart(BodyParts.LEFTEYE);
-            DrawBodyPart(BodyParts.RIGHTEYE);
-            DrawBodyPart(BodyParts.MOUTH);
-            DrawBodyPart(BodyParts.BODY);
-            DrawBodyPart(BodyParts.LEFTARM);
-            DrawBodyPart(BodyParts.RIGHTARM);
-            DrawBodyPart(BodyParts.LEFTLEG);
-            DrawBodyPart(BodyParts.RIGHTLEG);
+            WordGenerator wordGen = new WordGenerator();
+            Dispatcher.BeginInvoke((Action)(() => {
+                wordGen.GenerateWord();
+                MessageBox.Show(wordGen.Word);
+            }));
         }
 
         enum BodyParts

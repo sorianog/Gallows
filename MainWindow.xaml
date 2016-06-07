@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gallows"
         mc:Ignorable="d"
-        Title="Gallows " Height="292.4" Width="545.8" ResizeMode="NoResize" Loaded="Load">
+        Title="Gallows " Height="292.4" Width="545.8" ResizeMode="NoResize" Loaded="Load" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,3.2,-0.2">
         <GroupBox x:Name="groupBox" Header="" HorizontalAlignment="Left" Margin="367,4,0,0" VerticalAlignment="Top" Height="243" Width="155">
             <Canvas x:Name="canvas1" HorizontalAlignment="Left" Height="225" VerticalAlignment="Top" Width="145" Margin="-1,-2,-1.6,0"/>
