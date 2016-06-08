@@ -20,9 +20,10 @@ namespace Gallows
         private string wordToGuess = "";
         private static WordGenerator wordGen;
         private List<Label> chrLabels = new List<Label>();
+        private int incorrect = 0;
         enum BodyParts
         {
-            HEAD, LEFTEYE, RIGHTEYE, MOUTH, BODY, LEFTARM, RIGHTARM, LEFTLEG, RIGHTLEG
+            HEAD, BODY, LEFTARM, RIGHTARM, LEFTLEG, RIGHTLEG, LEFTEYE, RIGHTEYE, MOUTH
         }
 
         public MainWindow()
@@ -174,22 +175,41 @@ namespace Gallows
 
         private void ltrBtn_Click(object sender, RoutedEventArgs e)
         {
-            char ltr = ltrBox.Text.ToLower().ToCharArray()[0];
-            if (!char.IsLetter(ltr))
+            char ltr = ' ';
+            if (ltrBox.Text.Length != 0)
             {
-                MessageBox.Show("Please submit letters only!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            } else if (wordToGuess.Contains(ltr))
-            {
-                char[] ltrsInWrd = wordToGuess.ToCharArray();
-                for (int i = 0; i < ltrsInWrd.Length; i++)
+                ltr = ltrBox.Text.ToLower().ToCharArray()[0];
+                if (!char.IsLetter(ltr))
                 {
-                    if (ltrsInWrd[i] == ltr)
+                    MessageBox.Show("Please submit letters only!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (wordToGuess.Contains(ltr))
+                {
+                    char[] ltrsInWrd = wordToGuess.ToCharArray();
+                    for (int i = 0; i < ltrsInWrd.Length; i++)
                     {
-                        chrLabels[i].Content = ltr;
+                        if (ltrsInWrd[i] == ltr)
+                        {
+                            chrLabels[i].Content = ltr;
+                        }
                     }
                 }
-            }
-            //ltrBox.Text = "";
+                else
+                {
+                    MessageBox.Show("Sorry, the letter " + "\"" + ltr + "\"" + " is not in the word!", "Bad Letter", MessageBoxButton.OK, MessageBoxImage.Information);
+                    mssdLtrsLbl.Content += ltr + "  ";
+                    DrawBodyPart((BodyParts)incorrect);
+                    incorrect++;
+                    if (incorrect == 9)
+                    {
+                        MessageBox.Show("Sorry, you have reached the maximum amount of letter guesses and have been hung!", "You Lose", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                }
+                ltrBox.Text = "";
+            } else
+            {
+                MessageBox.Show("Please submit submit a letter!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }            
         }
     }
 }
