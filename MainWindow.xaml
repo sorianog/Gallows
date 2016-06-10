@@ -14,6 +14,7 @@
             <Grid x:Name="wrdGrid" HorizontalAlignment="Left" Height="152" VerticalAlignment="Top" Width="340" Margin="-1,-1,-1.4,0">
                 <Label x:Name="wrdLenLbl" Content="Word Length: " HorizontalAlignment="Left" Margin="241,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.318,0.469"/>
                 <Label x:Name="mssdLtrsLbl" Content="Missed Letters:  " HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="newWrdBtn" Content="New Word" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top" Width="75" Click="newWrdBtn_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox_Copy1" Header="" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Height="65" Width="350">

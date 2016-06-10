@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 /// <summary>
 /// Gallows by Gerald Soriano
@@ -168,7 +169,7 @@ namespace Gallows
                 chrLabel.FontSize = 20;
                 chrLabel.Content = "_";
                 chrLabels.Add(chrLabel);
-                wrdGrid.Children.Add(chrLabel);
+                wrdGrid.Children.Add(chrLabel);                
             }
             wrdLenLbl.Content = "Word Length: " + wordToGuess.Length;
         }
@@ -183,16 +184,24 @@ namespace Gallows
                 {
                     MessageBox.Show("Please submit letters only!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else if (wordToGuess.Contains(ltr))
-                {
+                else if (wordToGuess.Contains(ltr.ToString()))
+                {                    
                     char[] ltrsInWrd = wordToGuess.ToCharArray();
                     for (int i = 0; i < ltrsInWrd.Length; i++)
                     {
                         if (ltrsInWrd[i] == ltr)
                         {
-                            chrLabels[i].Content = ltr;
+                            chrLabels[i].Content = ltr;                            
+                            Console.WriteLine(chrLabels[i].Content);
                         }
                     }
+                    foreach (Label lbl in chrLabels)
+                    {
+                        if (lbl.Content.Equals("_")) return;
+                    }
+                    MessageBox.Show("Congratulations! You have beaten the lyncher and revealed the hidden word!",
+                                    "You Win", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+                    DisableInput();
                 }
                 else
                 {
@@ -202,7 +211,9 @@ namespace Gallows
                     incorrect++;
                     if (incorrect == 9)
                     {
-                        MessageBox.Show("Sorry, you have reached the maximum amount of letter guesses and have been hung!", "You Lose", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("Sorry, you have reached the maximum amount of guesses and have been hung! The word was: " + wordToGuess, 
+                                        "You Lose", MessageBoxButton.OK, MessageBoxImage.Information);
+                        DisableInput();
                     }
                 }
                 ltrBox.Text = "";
@@ -210,6 +221,44 @@ namespace Gallows
             {
                 MessageBox.Show("Please submit submit a letter!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }            
+        }
+
+        private void newWrdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < wrdGrid.Children.Count; i++)
+            {
+                Console.WriteLine("Index: " + i + " " + wrdGrid.Children[i].GetType());
+                //if (wrdGrid.Children[i] is Label)
+                //{
+                //    Label lbl = (Label)wrdGrid.Children[i];
+                //    if (lbl.Name.Length == 0)
+                //    {
+                //        wrdGrid.Children.Remove(wrdGrid.Children[i]);
+                //    }
+                //}
+            }
+            wrdGrid.Children.RemoveRange(3, wordToGuess.Length);
+            wordToGuess = wordGen.GenerateWord();
+            Console.WriteLine("New Word: " + wordToGuess);
+            canvas1.Children.Clear();
+            DrawHangPost();
+            MakeLabels();
+            mssdLtrsLbl.Content = "Missed Letters:  ";
+            incorrect = 0;
+            ltrBtn.IsEnabled = true;
+            ltrBox.IsEnabled = true;
+            ltrBox.Text = "";
+            wrdBtn.IsEnabled = true;
+            wrdBox.IsEnabled = true;
+            wrdBox.Text = "";
+        }
+
+        private void DisableInput()
+        {
+            ltrBtn.IsEnabled = false;
+            ltrBox.IsEnabled = false;
+            wrdBtn.IsEnabled = false;
+            wrdBox.IsEnabled = false;
         }
     }
 }
