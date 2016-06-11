@@ -34,8 +34,7 @@ namespace Gallows
         {
             DrawHangPost();
             wordGen = new WordGenerator();
-            wordToGuess = wordGen.GenerateWord();
-            Console.WriteLine(wordToGuess + " Length: " + wordToGuess.Length);
+            wordToGuess = wordGen.GenerateWord();            
             MakeLabels();
         }
 
@@ -157,8 +156,7 @@ namespace Gallows
             }            
         }
         private void MakeLabels()
-        {
-            Console.WriteLine("Word Grid Count Before: " + wrdGrid.Children.Count);            
+        {        
             char[] chars = wordToGuess.ToCharArray();
             double spcBetween = (wrdGrid.Width - 10) / chars.Length;
             for (int i = 0; i < chars.Length; i++)
@@ -171,7 +169,6 @@ namespace Gallows
                 wrdGrid.Children.Add(chrLabel);                
             }
             wrdLenLbl.Content = "Word Length: " + wordToGuess.Length;
-            Console.WriteLine("Word Grid Count After: " + wrdGrid.Children.Count);
         }
 
         private void ltrBtn_Click(object sender, RoutedEventArgs e)
@@ -192,7 +189,6 @@ namespace Gallows
                         if (ltrsInWrd[i] == ltr)
                         {
                             chrLabels[i].Content = ltr.ToString();                            
-                            //Console.WriteLine(chrLabels[i].Content);
                         }
                     }
                     foreach (Label lbl in chrLabels)
@@ -218,26 +214,13 @@ namespace Gallows
 
         private void newWrdBtn_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < wrdGrid.Children.Count; i++)
-            {
-                Console.WriteLine("Index: " + i + " " + wrdGrid.Children[i].GetType());
-                //if (wrdGrid.Children[i] is Label)
-                //{
-                //    Label lbl = (Label)wrdGrid.Children[i];
-                //    if (lbl.Name.Length == 0)
-                //    {
-                //        wrdGrid.Children.Remove(wrdGrid.Children[i]);
-                //    }
-                //}
-            }
             wrdGrid.Children.RemoveRange(3, wordToGuess.Length);
-            wordToGuess = wordGen.GenerateWord();
-            Console.WriteLine("New Word: " + wordToGuess);
+            wordToGuess = wordGen.GenerateWord();           
             canvas1.Children.Clear();
             DrawHangPost();
             chrLabels = new List<Label>();
             MakeLabels();
-            mssdLtrsLbl.Content = "Missed Letters:  ";
+            mssdLtrsLbl.Content = "Bad Letters:  ";
             incorrect = 0;
             ltrBtn.IsEnabled = true;
             ltrBox.IsEnabled = true;
@@ -250,6 +233,7 @@ namespace Gallows
         private void DisableInput()
         {
             ltrBtn.IsEnabled = false;
+            ltrBox.Text = "";
             ltrBox.IsEnabled = false;
             wrdBtn.IsEnabled = false;
             wrdBox.IsEnabled = false;
