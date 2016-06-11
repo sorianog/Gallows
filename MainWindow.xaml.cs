@@ -158,6 +158,7 @@ namespace Gallows
         }
         private void MakeLabels()
         {
+            Console.WriteLine("Word Grid Count Before: " + wrdGrid.Children.Count);            
             char[] chars = wordToGuess.ToCharArray();
             double spcBetween = (wrdGrid.Width - 10) / chars.Length;
             for (int i = 0; i < chars.Length; i++)
@@ -170,6 +171,7 @@ namespace Gallows
                 wrdGrid.Children.Add(chrLabel);                
             }
             wrdLenLbl.Content = "Word Length: " + wordToGuess.Length;
+            Console.WriteLine("Word Grid Count After: " + wrdGrid.Children.Count);
         }
 
         private void ltrBtn_Click(object sender, RoutedEventArgs e)
@@ -189,7 +191,7 @@ namespace Gallows
                     {
                         if (ltrsInWrd[i] == ltr)
                         {
-                            chrLabels[i].Content = ltr;                            
+                            chrLabels[i].Content = ltr.ToString();                            
                             //Console.WriteLine(chrLabels[i].Content);
                         }
                     }
@@ -233,6 +235,7 @@ namespace Gallows
             Console.WriteLine("New Word: " + wordToGuess);
             canvas1.Children.Clear();
             DrawHangPost();
+            chrLabels = new List<Label>();
             MakeLabels();
             mssdLtrsLbl.Content = "Missed Letters:  ";
             incorrect = 0;
