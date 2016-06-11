@@ -1,5 +1,7 @@
 # Gallows
-A WPF hangman game 
+A WPF hangman game that will help you learn how to spell new words to add to your vocabulary. 
+
+Take the game for a spin and download Gallows.exe now!
 
 # Icon 
 Retrived from iconfinder.com  
