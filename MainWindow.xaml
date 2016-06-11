@@ -21,7 +21,7 @@
             <Grid HorizontalAlignment="Left" Height="48" Margin="-1,-1,-1.4,0" VerticalAlignment="Top" Width="340">
                 <Button x:Name="ltrBtn" Content="Submit Letter" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="83" Click="ltrBtn_Click"/>
                 <TextBox x:Name="ltrBox" HorizontalAlignment="Left" Height="23" Margin="98,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="26" MaxLength="1"/>
-                <Button x:Name="wrdBtn" Content="Submit Word" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" Width="86"/>
+                <Button x:Name="wrdBtn" Content="Submit Word" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" Width="86" Click="wrdBtn_Click"/>
                 <TextBox x:Name="wrdBox" HorizontalAlignment="Left" Height="23" Margin="220,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="111"/>
             </Grid>
         </GroupBox>

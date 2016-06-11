@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 /// <summary>
 /// Gallows by Gerald Soriano
@@ -192,7 +190,7 @@ namespace Gallows
                         if (ltrsInWrd[i] == ltr)
                         {
                             chrLabels[i].Content = ltr;                            
-                            Console.WriteLine(chrLabels[i].Content);
+                            //Console.WriteLine(chrLabels[i].Content);
                         }
                     }
                     foreach (Label lbl in chrLabels)
@@ -200,21 +198,14 @@ namespace Gallows
                         if (lbl.Content.Equals("_")) return;
                     }
                     MessageBox.Show("Congratulations! You have beaten the lyncher and revealed the hidden word!",
-                                    "You Win", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+                                    "You Win", MessageBoxButton.OK, MessageBoxImage.Information);
                     DisableInput();
                 }
                 else
                 {
                     MessageBox.Show("Sorry, the letter " + "\"" + ltr + "\"" + " is not in the word!", "Bad Letter", MessageBoxButton.OK, MessageBoxImage.Information);
                     mssdLtrsLbl.Content += ltr + "  ";
-                    DrawBodyPart((BodyParts)incorrect);
-                    incorrect++;
-                    if (incorrect == 9)
-                    {
-                        MessageBox.Show("Sorry, you have reached the maximum amount of guesses and have been hung! The word was: " + wordToGuess, 
-                                        "You Lose", MessageBoxButton.OK, MessageBoxImage.Information);
-                        DisableInput();
-                    }
+                    BadGuess();
                 }
                 ltrBox.Text = "";
             } else
@@ -259,6 +250,34 @@ namespace Gallows
             ltrBox.IsEnabled = false;
             wrdBtn.IsEnabled = false;
             wrdBox.IsEnabled = false;
+        }
+
+        private void wrdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (wrdBox.Text.ToLower() == wordToGuess)
+            {
+                MessageBox.Show("Congratulations! You have guessed the correct word which was " + wordToGuess + "!",
+                                    "You Win", MessageBoxButton.OK, MessageBoxImage.Information);
+                DisableInput();
+            } else
+            {
+                MessageBox.Show("Sorry, " + wrdBox.Text + " is not the hidden word!", "Bad Word", MessageBoxButton.OK, MessageBoxImage.Information);
+                BadGuess();
+                wrdBox.Text = "";
+
+            }
+        }
+
+        private void BadGuess()
+        {
+            DrawBodyPart((BodyParts)incorrect);
+            incorrect++;
+            if (incorrect == 9)
+            {
+                MessageBox.Show("Sorry, you have reached the maximum amount of guesses and have been hung! The word was: " + wordToGuess,
+                                "You Lose", MessageBoxButton.OK, MessageBoxImage.Information);
+                DisableInput();
+            }
         }
     }
 }
